@@ -1,5 +1,5 @@
 # MotionInput-UnityLibrary
-# Interface Library Documentation
+
 
 ## Architectural Design
 
