@@ -4,9 +4,9 @@
 
 The implementation of this library is organized into three types of scripts:
 
-1. [Interaction scripts](./Documentation/InteractionScriptsReadme.md)
-2. [Effect scripts](./Documentation/EffectScriptsReadme.md)
-3. [General scripts](./Documentation/GeneralScriptsReadme.md)
+1. [Interaction scripts](./Assets/Documentation/InteractionScriptsReadme.md)
+2. [Effect scripts](./Assets/Documentation/EffectScriptsReadme.md)
+3. [General scripts](./Assets/Documentation/GeneralScriptsReadme.md)
 
 This design was chosen to facilitate the creation of a wide range of interactions and effects, allowing virtually any interaction to trigger any effect.
 
