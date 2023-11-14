@@ -1,13 +1,12 @@
 # MotionInput-UnityLibrary
 
-
 ## Architectural Design
 
 The implementation of this library is organized into three types of scripts:
 
-1. [Interaction scripts](./InteractionScriptsReadme.md)
-2. [Effect scripts](./EffectScriptsReadme.md)
-3. [General scripts](./GeneralScriptsReadme.md)
+1. [Interaction scripts](./Assets/Documentation/InteractionScriptsReadme.md)
+2. [Effect scripts](./Assets/Documentation/EffectScriptsReadme.md)
+3. [General scripts](./Assets/Documentation/GeneralScriptsReadme.md)
 
 This design was chosen to facilitate the creation of a wide range of interactions and effects, allowing virtually any interaction to trigger any effect.
 
@@ -30,4 +29,5 @@ The `Handpick Effects` boolean on any interaction effect allows you to specify a
 Most effects have fallback properties that they load at runtime from the resources folder. However, these fallback effects may not be ideal for your scenario. It is recommended to configure the required components in the scene beforehand. For example, if there is no `BrickGrid` object in the scene when played, one will be created at runtime. But it will have default properties, which may result in bricks not aligning properly.
 
 ---
-*Note: Ensure you follow these guidelines for smooth integration and functioning of the library.*
+
+_Note: Ensure you follow these guidelines for smooth integration and functioning of the library._
