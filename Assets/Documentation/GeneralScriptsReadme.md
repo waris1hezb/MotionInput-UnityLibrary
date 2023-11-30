@@ -1,4 +1,4 @@
-## General Readme
+## General Scripts Readme
 
 This README details all the scripts of significance other than the interaction and effect scripts in the library.
 
