@@ -1,12 +1,14 @@
 ## Effects Readme
 
-This README details all the effect scripts in the library.   
+This README details all the effect scripts in the library.
+
 There is a base setup for effects where every effect except for camera specific effects namely [CameraMoveEffect](#camerazoomeffectcs) and [CameraZoomEffect](#camerazoomeffectcs) extends the BaseEffect class which in turn implements that IEffect interface. This setup makes certain that each effect has an implementation for EnableEffect and DisableEffect methods.  
-Most effects have serialized properties that can be set as per requirement for example [GlowEffect](#gloweffectcs) has a float property 'intensity' which sets the intensity of the glow. All effects are self contained and are not interdependant and handle any errors gracefully. All effects are also marked with the Unity attribute '[DisallowMultipleComponent]' so only a single effect of the same type may be applicable on an object. 
+Most effects have serialized properties that can be set as per requirement for example [GlowEffect](#gloweffectcs) has a float property 'intensity' which sets the intensity of the glow. All effects are self contained and are not interdependant and handle any errors gracefully. All effects are also marked with the Unity attribute '[DisallowMultipleComponent]' so only a single effect of the same type may be applicable on an object.
 
 ## CursorSwitchEffect.cs
 
 ### Description
+
 The `CursorSwitchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It allows for switching the game cursor to a custom texture.
 
 ### Fields
@@ -17,12 +19,14 @@ The `CursorSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It ensures that a `CursorManager` is available in the scene. If not, it creates one.
   - Behavior:
     - Checks if `CursorManager.Instance` is null.
     - If true, creates a new `GameObject` named "CursorManager" and attaches a `CursorManager` component to it.
 
 - **`DisableEffect()`**
+
   - Description: Disables the custom cursor effect and restores the previous cursor.
   - Behavior:
     - Calls `CursorManager.Instance.RestorePreviousCursor(true)` to restore the previous cursor.
@@ -36,12 +40,15 @@ The `CursorSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
     - If true, calls `CursorManager.Instance.SetCursor(...)` with a `CustomCursor` object created from `_cursorTexture` and `_hotspot`.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the `_cursorTexture` field to the desired custom cursor texture, and optionally adjust the `_hotspot` field for cursor positioning. When the effect is enabled, it will replace the standard cursor with the custom one. When disabled, it restores the previous cursor.
 
 ### Requirements
+
 - The `CursorManager` script for proper functionality.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -60,6 +67,7 @@ void OnDestroy()
 ## OutlineEffect.cs
 
 ### Description
+
 The `OutlineEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for adding an outline effect to a GameObject.
 
 ### Fields
@@ -75,6 +83,7 @@ The `OutlineEffect` script is a MonoBehaviour that implements the `IEffect` inte
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It sets up the outline effect by adding an `Outline` component and configuring its properties.
   - Behavior:
     - Creates and assigns an `Outline` component to the GameObject.
@@ -82,6 +91,7 @@ The `OutlineEffect` script is a MonoBehaviour that implements the `IEffect` inte
     - Disables the outline effect initially.
 
 - **`DisableEffect()`**
+
   - Description: Disables the outline effect, making it invisible.
   - Behavior:
     - Checks if `_outline` is not null.
@@ -96,12 +106,15 @@ The `OutlineEffect` script is a MonoBehaviour that implements the `IEffect` inte
     - If true, sets `_outline.enabled` to true.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired outline mode, color, and width using the serialized fields. When the effect is enabled, it adds a visible outline to the GameObject. When disabled, the outline becomes invisible.
 
 ### Requirements
+
 - The free `Quick Outline` asset from the asset store https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -120,6 +133,7 @@ void OnDestroy()
 ## ColorSwitchEffect.cs
 
 ### Description
+
 The `ColorSwitchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for smoothly transitioning the color of a `Renderer` component using the DOTween animation library.
 
 ### Fields
@@ -135,12 +149,14 @@ The `ColorSwitchEffect` script is a MonoBehaviour that implements the `IEffect` 
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes the references to the `Renderer` and stores the original color of the material.
   - Behavior:
     - Gets the `Renderer` component attached to the GameObject.
     - Stores the original color of the material.
 
 - **`DisableEffect()`**
+
   - Description: Disables the color switch effect by smoothly transitioning back to the original color.
   - Behavior:
     - Uses DOTween to animate the transition from the current color to the original color over the specified duration.
@@ -153,12 +169,15 @@ The `ColorSwitchEffect` script is a MonoBehaviour that implements the `IEffect` 
     - Uses DOTween to animate the transition from the current color to the target color over the specified duration.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired transition duration and target color using the serialized fields. When the effect is enabled, it smoothly transitions the color of the attached `Renderer` component. When disabled, it smoothly reverts the color back to its original state.
 
 ### Requirements
+
 - The free `DOTween (HOTween v2)` asset from the asset store https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -177,6 +196,7 @@ void OnDestroy()
 ## GlowEffect.cs
 
 ### Description
+
 The `GlowEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for adding a glowing effect to a GameObject by manipulating its emission property.
 
 ### Fields
@@ -191,33 +211,38 @@ The `GlowEffect` script is a MonoBehaviour that implements the `IEffect` interfa
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes the references to the `Renderer` and sets up the emission property for the glow effect.
   - Behavior:
     - Gets the `Renderer` component attached to the GameObject.
-    - Disables the "_EMISSION" keyword to start with no emission.
-    - Sets the "_EmissionColor" property of the material to enhance the glow effect.
+    - Disables the "\_EMISSION" keyword to start with no emission.
+    - Sets the "\_EmissionColor" property of the material to enhance the glow effect.
 
 - **`DisableEffect()`**
+
   - Description: Disables the glow effect by turning off the emission property.
   - Behavior:
-    - Disables the "_EMISSION" keyword, effectively turning off the emission property.
+    - Disables the "\_EMISSION" keyword, effectively turning off the emission property.
 
 - **`EnableEffect(bool temp = false)`**
   - Description: Enables the glow effect by turning on the emission property.
   - Parameters:
     - **`temp`** (Type: `bool`, Default: `false`): Indicates whether the glow effect is temporary or permanent. (Note: Not used in this script)
   - Behavior:
-    - Enables the "_EMISSION" keyword, activating the emission property.
+    - Enables the "\_EMISSION" keyword, activating the emission property.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired intensity of the glow effect using the serialized `_intensity` field. When the effect is enabled, it adds a glowing effect to the attached GameObject. When disabled, the glow effect is turned off.
 
 ### Requirements
+
 - A global post-processing volume must be present in the scene.
 - The post-processing volume should have a "Bloom" effect added to it.
 - The main camera in the scene must have post-processing enabled to display the glow effect properly.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -236,6 +261,7 @@ void OnDestroy()
 ## TransparencyEffect.cs
 
 ### Description
+
 The `TransparencyEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for changing the transparency of a GameObject's material.
 
 ### Fields
@@ -256,13 +282,14 @@ The `TransparencyEffect` script is a MonoBehaviour that implements the `IEffect`
     - Gets the `Renderer` component attached to the GameObject.
     - Loads a material named "mat_transparent" from the Resources folder and assigns it to `_mat`.
     - Adjusts the transparency of `_mat` based on the serialized `_transparency` field.
-    
 - **`DisableEffect()`**
+
   - Description: Disables the transparency effect by reverting the material to its original state.
   - Behavior:
     - Sets the `Renderer` material to `_originalMat`.
 
 - **`EnableEffect(bool temp = false)`**
+
   - Description: Enables the transparency effect by applying the modified material with adjusted transparency.
   - Parameters:
     - **`temp`** (Type: `bool`, Default: `false`): Indicates whether the transparency effect is temporary or permanent.
@@ -276,13 +303,16 @@ The `TransparencyEffect` script is a MonoBehaviour that implements the `IEffect`
     - Waits for 0.5 seconds and then calls `DisableEffect()`.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired transparency level using the serialized `_transparency` field. When the effect is enabled, it adjusts the transparency of the attached GameObject's material. If `temp` is set to true, the effect will be temporary.
 
 ### Requirements
+
 - A material named "mat_transparent" must be available in the Resources folder.
 - The material "mat_transparent" should have its surface type set to "Opaque".
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -301,6 +331,7 @@ void OnDestroy()
 ## ScalePunchEffect.cs
 
 ### Description
+
 The `ScalePunchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for applying a punching scale effect to a GameObject using the DOTween animation library.
 
 ### Fields
@@ -316,12 +347,14 @@ The `ScalePunchEffect` script is a MonoBehaviour that implements the `IEffect` i
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes the `_initialScale` and `_punchScale` vectors based on the provided punch value.
   - Behavior:
     - Sets `_initialScale` to the local scale of the GameObject.
     - Calculates `_punchScale` as a scaled version of `_initialScale` with negative punch magnitude.
 
 - **`DisableEffect()`**
+
   - Description: This method is intentionally left empty as this effect does not require a specific action for disabling.
 
 - **`EnableEffect(bool temp = false)`**
@@ -332,12 +365,15 @@ The `ScalePunchEffect` script is a MonoBehaviour that implements the `IEffect` i
     - Uses DOTween to animate a punch scale effect on the GameObject over the specified duration.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired punch magnitude and duration using the serialized fields. When the effect is enabled, it applies a punching scale animation to the attached GameObject.
 
 ### Requirements
+
 - The free `DOTween (HOTween v2)` asset from the asset store https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -350,6 +386,7 @@ void Start()
 ## RotationPunchEffect.cs
 
 ### Description
+
 The `RotationPunchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for applying a punching rotation effect to a GameObject using the DOTween animation library.
 
 ### Fields
@@ -365,12 +402,14 @@ The `RotationPunchEffect` script is a MonoBehaviour that implements the `IEffect
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes `_initialRotation` and `_punchRotation` based on the provided punch value.
   - Behavior:
     - Sets `_initialRotation` to the Euler angles of the GameObject's rotation.
     - Calculates `_punchRotation` by adding `_punch` to `_initialRotation`.
 
 - **`DisableEffect()`**
+
   - Description: This method is intentionally left empty as this effect does not require a specific action for disabling.
 
 - **`EnableEffect(bool temp = false)`**
@@ -381,9 +420,11 @@ The `RotationPunchEffect` script is a MonoBehaviour that implements the `IEffect
     - Uses DOTween to animate a punch rotation effect on the GameObject over the specified duration.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired punch rotation and duration using the serialized fields. When the effect is enabled, it applies a punching rotation animation to the attached GameObject.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -396,6 +437,7 @@ void Start()
 ## PositionPunchEffect.cs
 
 ### Description
+
 The `PositionPunchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for applying a punching position effect to a GameObject using the DOTween animation library.
 
 ### Fields
@@ -412,12 +454,14 @@ The `PositionPunchEffect` script is a MonoBehaviour that implements the `IEffect
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes `_initialPosition` and `_punchPosition` based on the provided punch value.
   - Behavior:
     - Sets `_initialPosition` to the position of the GameObject.
     - Calculates `_punchPosition` by adding `_punch` to `_initialPosition`.
 
 - **`DisableEffect()`**
+
   - Description: This method is intentionally left empty as this effect does not require a specific action for disabling.
 
 - **`EnableEffect(bool temp = false)`**
@@ -429,9 +473,11 @@ The `PositionPunchEffect` script is a MonoBehaviour that implements the `IEffect
     - The animation is set to complete in the specified duration, and once completed, it nullifies the active tween.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired punch position and duration using the serialized fields. When the effect is enabled, it applies a punching position animation to the attached GameObject.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -444,6 +490,7 @@ void Start()
 ## WireframeEffect.cs
 
 ### Description
+
 The `WireframeEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for rendering a wireframe effect on a GameObject's mesh. The wireframe effect can be of different types, such as transparent, culled transparent, or solid.
 
 ### Fields
@@ -463,6 +510,7 @@ The `WireframeEffect` script is a MonoBehaviour that implements the `IEffect` in
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes references to the `Renderer` and the original material, and sets up the wireframe material.
   - Behavior:
     - Gets the `Renderer` component attached to the GameObject.
@@ -470,11 +518,13 @@ The `WireframeEffect` script is a MonoBehaviour that implements the `IEffect` in
     - Calls `InitWireframeMaterial()` to set up the wireframe material.
 
 - **`DisableEffect()`**
+
   - Description: Disables the wireframe effect by reverting the material to its original state.
   - Behavior:
     - Sets the `Renderer` material to `_originalMat`.
 
 - **`EnableEffect(bool temp = false)`**
+
   - Description: Enables the wireframe effect by applying the wireframe material.
   - Parameters:
     - **`temp`** (Type: `bool`, Default: `false`): Indicates whether the effect is temporary or permanent.
@@ -488,13 +538,16 @@ The `WireframeEffect` script is a MonoBehaviour that implements the `IEffect` in
     - Configures the wireframe material with specified colors, thickness, and smoothness.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Customize the wireframe effect using the serialized fields. When the effect is enabled, it applies the selected wireframe effect to the attached GameObject.
 
 ### Requirements
+
 - Ensure that the Resources folder contains the necessary wireframe materials (mat_wireframe_transparent, mat_wireframe_transparent_culled, and mat_wireframe_solid).
 - Three shaders should be present in the project: WireframeShaded-Unlit, WireframeTransparent, and WireframeTransparentCulled.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -513,6 +566,7 @@ void OnDestroy()
 ## ColorFlickerEffect.cs
 
 ### Description
+
 The `ColorFlickerEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for creating a flickering color effect on a GameObject's material using the DOTween animation library.
 
 ### Fields
@@ -531,12 +585,14 @@ The `ColorFlickerEffect` script is a MonoBehaviour that implements the `IEffect`
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes references to the `Renderer` and stores the original material color.
   - Behavior:
     - Gets the `Renderer` component attached to the GameObject.
     - Stores the original color of the GameObject's material.
 
 - **`DisableEffect()`**
+
   - Description: Disables the color flicker effect by stopping the flicker coroutine and restoring the original material color.
   - Behavior:
     - Checks if the flicker coroutine is running, if so, it stops it.
@@ -545,6 +601,7 @@ The `ColorFlickerEffect` script is a MonoBehaviour that implements the `IEffect`
     - Resets internal variables.
 
 - **`EnableEffect(bool temp = false)`**
+
   - Description: Enables the color flicker effect by starting the flicker coroutine.
   - Parameters:
     - **`temp`** (Type: `bool`, Default: `false`): Indicates whether the effect is temporary or permanent. (Note: Not used in this script)
@@ -560,9 +617,11 @@ The `ColorFlickerEffect` script is a MonoBehaviour that implements the `IEffect`
     - Switches the target color between the flicker color and the original color.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired flicker duration and color using the serialized fields. When the effect is enabled, it applies a flickering color animation to the attached GameObject.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -581,6 +640,7 @@ void OnDestroy()
 ## OutlineFlickerEffect.cs
 
 ### Description
+
 The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for applying a flickering outline effect to a GameObject using the Outline component.
 
 ### Fields
@@ -601,6 +661,7 @@ The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffec
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes the Outline component and sets initial parameters.
   - Behavior:
     - Adds the Outline component to the GameObject.
@@ -608,6 +669,7 @@ The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffec
     - Stores the original outline color.
 
 - **`DisableEffect()`**
+
   - Description: Disables the outline flicker effect by stopping the flicker coroutine and restoring the original outline color.
   - Behavior:
     - Checks if the Outline component is present.
@@ -617,6 +679,7 @@ The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffec
     - Resets internal variables.
 
 - **`EnableEffect(bool temp = false)`**
+
   - Description: Enables the outline flicker effect by starting the flicker coroutine.
   - Parameters:
     - **`temp`** (Type: `bool`, Default: `false`): Indicates whether the effect is temporary or permanent. (Note: Not used in this script)
@@ -634,9 +697,11 @@ The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffec
     - Switches the target color between the flicker color and the original color.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Customize the outline effect using the serialized fields. When the effect is enabled, it applies a flickering outline animation to the attached GameObject.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -655,6 +720,7 @@ void OnDestroy()
 ## ShadowSwitchEffect.cs
 
 ### Description
+
 The `ShadowSwitchEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for dynamically changing the shadow casting mode of a GameObject's Renderer component.
 
 ### Fields
@@ -669,12 +735,14 @@ The `ShadowSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes references to the `Renderer` and stores the original shadow casting mode.
   - Behavior:
     - Gets the `Renderer` component attached to the GameObject.
     - Stores the original shadow casting mode of the Renderer.
 
 - **`DisableEffect()`**
+
   - Description: Disables the shadow switch effect by setting the shadow casting mode back to its original value.
   - Behavior:
     - Sets the `Renderer` shadow casting mode to the original mode.
@@ -687,9 +755,11 @@ The `ShadowSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
     - Sets the `Renderer` shadow casting mode to the specified `_shadowMode`.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired shadow casting mode using the serialized field. When the effect is enabled, it dynamically changes the shadow casting mode of the attached GameObject's Renderer component.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -708,6 +778,7 @@ void OnDestroy()
 ## TextLabelEffect.cs
 
 ### Description
+
 The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for displaying a text label associated with a GameObject. The label can be customized through the serialized fields.
 
 ### Fields
@@ -722,6 +793,7 @@ The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` in
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It sets up the text label based on the provided configuration.
   - Behavior:
     - Checks if `_text` is not referenced, if so, attempts to find the first TMP_Text component in the children.
@@ -729,6 +801,7 @@ The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` in
     - If successful, sets up the TMP_Text component with the specified label text and disables it.
 
 - **`DisableEffect()`**
+
   - Description: Disables the text label effect by hiding the TMP_Text component.
   - Behavior:
     - Checks if `_text` is not null, if so, hides the TMP_Text component by setting its `enabled` property to false.
@@ -741,12 +814,15 @@ The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` in
     - Checks if `_text` is not null, if so, shows the TMP_Text component by setting its `enabled` property to true.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Customize the text label using the serialized fields. If a TMP_Text component is not provided or found in the children, it can be created at runtime using a prefab named 'TextLabelEffect_LabelPrefab' in the Resources folder. When the effect is enabled, it displays the label on the attached GameObject.
 
 ### Requirements
+
 - Ensure that there is a prefab named 'TextLabelEffect_LabelPrefab' in the Resources folder for proper backup functioning.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -765,6 +841,7 @@ void OnDestroy()
 ## AudioPlaybackEffect.cs
 
 ### Description
+
 The `AudioPlaybackEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for playing an AudioClip when the effect is enabled.
 
 ### Fields
@@ -778,12 +855,14 @@ None
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It checks if an audio clip is provided. If not, it attempts to load a fallback audio clip from the Resources folder.
   - Behavior:
     - Checks if `_clip` is not null, if so, it doesn't perform any further action.
     - If `_clip` is null, it attempts to load a fallback audio clip named 'AudioPlaybackEffect_Fallback' from the Resources folder.
 
 - **`DisableEffect()`**
+
   - Description: This method intentionally does nothing for this particular effect. It is included to implement the `IEffect` interface, but audio playback is not meant to be disabled once started.
 
 - **`EnableEffect(bool temp = false)`**
@@ -794,9 +873,11 @@ None
     - Checks if `_clip` is not null, if so, it plays the audio clip at the position (0, 0, 0) using `AudioSource.PlayClipAtPoint`.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Set the desired audio clip to be played using the serialized field. When the effect is enabled, it plays the specified audio clip.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -809,39 +890,48 @@ void Start()
 ## CameraMoveEffect.cs
 
 ### Description
+
 The `CameraMoveEffect` script is a MonoBehaviour that enables the application of a vignette effect using Universal Render Pipeline's Post Processing. It allows for smoothly transitioning the intensity of the vignette effect on the camera.
 
 ### Fields
+
 - **Post Process Volume** (_Volume_):
-    - The Volume component used for applying post-processing effects. If not provided, the script will attempt to find one in the scene.
+  - The Volume component used for applying post-processing effects. If not provided, the script will attempt to find one in the scene.
 - **Intensity** (_float_):
-    - A value between -1 and 1 representing the intensity of the vignette effect.
+  - A value between -1 and 1 representing the intensity of the vignette effect.
 - **Duration** (_float_):
-    - The time in seconds it takes for the intensity to transition from its current value to the target value.
+  - The time in seconds it takes for the intensity to transition from its current value to the target value.
 
 ### Methods
+
 - **Awake()**:
-    - Initializes the script by obtaining the necessary references, such as the Post Process Volume and the Vignette effect.
+
+  - Initializes the script by obtaining the necessary references, such as the Post Process Volume and the Vignette effect.
 
 - **DisableEffect()**:
-    - Gradually reduces the intensity of the vignette effect to zero, effectively disabling it.
+
+  - Gradually reduces the intensity of the vignette effect to zero, effectively disabling it.
 
 - **EnableEffect()**:
-    - Gradually increases the intensity of the vignette effect to the specified value, enabling it.
+
+  - Gradually increases the intensity of the vignette effect to the specified value, enabling it.
 
 - **LerpIntensity(float targetIntensity)**:
-    - Interpolates the intensity of the vignette effect over time to smoothly transition from the current value to the target value.
+  - Interpolates the intensity of the vignette effect over time to smoothly transition from the current value to the target value.
 
 ### Usage
+
 1. Attach this script to a GameObject in the scene.
 2. Assign a Post Process Volume to the `_postProcessVolume` field in the Inspector. If none is provided, the script will attempt to find one automatically.
 3. Set the desired `Intensity` value to control the strength of the vignette effect.
 4. Adjust the `Duration` to determine how quickly the effect should transition.
 
 ### Note
+
 - Ensure that the Universal Render Pipeline (URP) is correctly set up in the project for the post-processing effects to work.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
@@ -860,6 +950,7 @@ void OnDestroy()
 ## CameraZoomEffect.cs
 
 ### Description
+
 The `CameraZoomEffect` script is a MonoBehaviour that provides functionality for applying a lens distortion effect to the camera using Universal Render Pipeline's Post-Processing Stack.
 
 ### Fields
@@ -875,23 +966,28 @@ The `CameraZoomEffect` script is a MonoBehaviour that provides functionality for
 ### Methods
 
 - **`Awake()`**
+
   - Description: This method is called when the script instance is being loaded. It initializes the `_lensDistortion` effect and disables it.
 
 - **`EnableEffect(int direction)`**
+
   - Description: Enables the lens distortion effect by lerping its intensity to the specified value over a specified duration. The direction parameter determines whether to zoom in (negative value) or out (positive value).
   - Parameters:
     - **`direction`** (Type: `int`): The direction of the zoom effect.
 
 - **`DisableEffect()`**
+
   - Description: Disables the lens distortion effect by lerping its intensity to 0 over a specified duration.
 
 - **`LerpIntensity(float targetIntensity)`**
   - Description: Lerps the intensity of the lens distortion effect from its current value to the target intensity over a specified duration.
 
 ### Usage
+
 Attach this script to a GameObject in the scene. Assign a Post-Processing Volume to the `_postProcessVolume` field. Adjust the intensity and duration parameters to control the lens distortion effect. When the effect is enabled, it applies the lens distortion effect to the camera.
 
 ### Example
+
 ```csharp
 // Example usage in another script
 void Start()
