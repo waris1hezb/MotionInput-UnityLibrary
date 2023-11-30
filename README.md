@@ -1,5 +1,17 @@
 # MotionInput-UnityLibrary
 
+Welcome to the MotionInput-UnityLibrary, a versatile and dynamic effects library tailored for UCL MotionInput technology. This library is designed to enhance touchless interaction experiences in Unity, offering a wide range of customizable effects that respond seamlessly to motion-based inputs. Whether you're developing immersive games, interactive applications, or VR/AR experiences, our library provides the tools you need to create engaging and intuitive touchless interactions.
+
+## Setting Up Unity
+
+To integrate this library into your project:
+
+1. Clone Repository: Clone this repository to your local machine.
+2. Import Library into Unity: Open your Unity project and import the cloned library by dragging the folder into the Unity Editor's Project window.
+3. Explore the Catalogue: In the library under `Assets/Scenes/Interactions_And_Effects_Catalogue.unity`, you can find the Interaction and Effects catalogue, showcasing all the current effects and interactions.
+4. Testing and Customization:
+   The 'Test Scene' located at `Assets/Scenes/TestScene.unity` is set up for you to add objects and test different interactions and effects. Experiment with various combinations to see how they work together.
+
 ## Architectural Design
 
 The implementation of this library is organized into three types of scripts:
@@ -14,7 +26,7 @@ This design was chosen to facilitate the creation of a wide range of interaction
 
 To quickly get started, follow these steps:
 
-1. Open the 'Demo' scene located at `Assets/Scenes/Demo.unity`.
+1. Open the 'Test Scene' scene located at `Assets/Scenes/TestScene.unity`.
 
 2. Create a 3D object in the scene.
 
@@ -30,4 +42,5 @@ Most effects have fallback properties that they load at runtime from the resourc
 
 ---
 
-_Note: Ensure you follow these guidelines for smooth integration and functioning of the library._
+_Note: Ensure you follow these guidelines for smooth integration and functioning of the library.
+This library is currently not available on the Unity Package Manager. To use it, clone this repository and import it into your Unity project_
