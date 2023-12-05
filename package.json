@@ -1,0 +1,21 @@
+{
+    "name": "motioninput-unitylibrary",
+    "version": "1.0.0",
+    "description": "Unity effects-library effects-library",
+    
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/waris1hezb/MotionInput-UnityLibrary.git"
+    },
+    "keywords": [
+      "Unity",
+      "effects",
+      "effects-library",
+      "MotionInput-UnityLibrary"
+    ],
+    "author": "Waris Hezb",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/waris1hezb/MotionInput-UnityLibrary.git"
+    }
+}
