@@ -2,9 +2,9 @@
 
 This README details all the interaction scripts in the library.
 
-There is a base setup for effects where every interaction extends the [BaseInteraction](GeneralScriptsReadme.md#baseinteractioncs) class. This setup gives each interaction the ability to cherry pick effects or pick all based on the boolean value of serialized 'handpickEffects' property. The BaseInteraction class also gives provides two methods EnableAllEffects(bool temp) and DisableAllEffects(). The temp argument in the EnableAllEffects method allows for interactions that are temporary to play the effects for a preconfigured amount of time as specified in [BaseEffect](GeneralScriptsReadme.md#baseeffectcs) class set by default to 0.5 seconds. For example the [ClickInteraction](#clickinteractioncs) sets temp to true.
+There is a base setup for effects where every interaction extends the [BaseInteraction](GeneralScriptsReadme.md#baseinteractioncs) class. This setup gives each interaction the ability to cherry pick effects or pick all based on the boolean value of serialised 'handpickEffects' property. The BaseInteraction class also gives provides two methods EnableAllEffects(bool temp) and DisableAllEffects(). The temp argument in the EnableAllEffects method allows for interactions that are temporary to play the effects for a preconfigured amount of time as specified in [BaseEffect](GeneralScriptsReadme.md#baseeffectcs) class set by default to 0.5 seconds. For example the [ClickInteraction](#clickinteractioncs) sets temp to true.
 
-Some interactions might have serialized properties as well such as the [FocusInteraction](#focusinteractioncs) which has the float property 'hoverDuration'. The BaseInteraction script is easily extendable to create new forms of interactions.
+Some interactions might have serialised properties as well such as the [FocusInteraction](#focusinteractioncs) which has the float property 'hoverDuration'. The BaseInteraction script is easily extendable to create new forms of interactions.
 
 ## HoverInteraction.cs
 
@@ -88,7 +88,7 @@ The `RotationInteraction` script is a MonoBehaviour that extends the `BaseIntera
 
 ### Fields
 
-- **`_speed`** (Type: `float`, Serialized): The speed at which the GameObject rotates in response to mouse movement.
+- **`_speed`** (Type: `float`, Serialised): The speed at which the GameObject rotates in response to mouse movement.
 
 - **`_cam`** (Type: `Camera`): Reference to the main camera in the scene.
 
@@ -174,7 +174,7 @@ The `FocusInteraction` script is a MonoBehaviour that extends the `BaseInteracti
 
 ### Fields
 
-- **`_hoverDuration`** (Type: `float`, Serialized): The duration (in seconds) required for continuous hovering to trigger the focus.
+- **`_hoverDuration`** (Type: `float`, Serialised): The duration (in seconds) required for continuous hovering to trigger the focus.
 
 - **`_isHovering`** (Type: `bool`): Indicates if the mouse pointer is currently over the GameObject.
 
@@ -212,7 +212,7 @@ The `DragGridInteraction` script is a MonoBehaviour that extends the `BaseIntera
 
 ### Fields
 
-- **`_ghostTransparency`** (Type: `int`, Serialized, Range: 0 to 255): Specifies the transparency level of the ghost object.
+- **`_ghostTransparency`** (Type: `int`, Serialised, Range: 0 to 255): Specifies the transparency level of the ghost object.
 
 - **`_cam`** (Type: `Camera`): Reference to the main camera in the scene.
 

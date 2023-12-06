@@ -3,7 +3,7 @@
 This README details all the effect scripts in the library.
 
 There is a base setup for effects where every effect except for camera specific effects namely [CameraMoveEffect](#camerazoomeffectcs) and [CameraZoomEffect](#camerazoomeffectcs) extends the BaseEffect class which in turn implements that IEffect interface. This setup makes certain that each effect has an implementation for EnableEffect and DisableEffect methods.  
-Most effects have serialized properties that can be set as per requirement for example [GlowEffect](#gloweffectcs) has a float property 'intensity' which sets the intensity of the glow. All effects are self contained and are not interdependant and handle any errors gracefully. All effects are also marked with the Unity attribute '[DisallowMultipleComponent]' so only a single effect of the same type may be applicable on an object.
+Most effects have serialised properties that can be set as per requirement for example [GlowEffect](#gloweffectcs) has a float property 'intensity' which sets the intensity of the glow. All effects are self contained and are not interdependant and handle any errors gracefully. All effects are also marked with the Unity attribute '[DisallowMultipleComponent]' so only a single effect of the same type may be applicable on an object.
 
 ## CursorSwitchEffect.cs
 
@@ -13,8 +13,8 @@ The `CursorSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
 
 ### Fields
 
-- **`_cursorTexture`** (Type: `Texture2D`, Serialized): The custom texture to be used as the cursor.
-- **`_hotspot`** (Type: `CursorHotspot`, Serialized): The hotspot position of the custom cursor.
+- **`_cursorTexture`** (Type: `Texture2D`, Serialised): The custom texture to be used as the cursor.
+- **`_hotspot`** (Type: `CursorHotspot`, Serialised): The hotspot position of the custom cursor.
 
 ### Methods
 
@@ -72,9 +72,9 @@ The `OutlineEffect` script is a MonoBehaviour that implements the `IEffect` inte
 
 ### Fields
 
-- **`_outlineMode`** (Type: `Outline.Mode`, Serialized): The mode of the outline effect. It determines when the outline is visible.
-- **`_outlineColor`** (Type: `Color`, Serialized): The color of the outline.
-- **`_outlineWidth`** (Type: `float`, Serialized): The width or thickness of the outline.
+- **`_outlineMode`** (Type: `Outline.Mode`, Serialised): The mode of the outline effect. It determines when the outline is visible.
+- **`_outlineColor`** (Type: `Color`, Serialised): The color of the outline.
+- **`_outlineWidth`** (Type: `float`, Serialised): The width or thickness of the outline.
 
 ### Internal Fields
 
@@ -138,8 +138,8 @@ The `ColorSwitchEffect` script is a MonoBehaviour that implements the `IEffect` 
 
 ### Fields
 
-- **`_duration`** (Type: `float`, Serialized): The duration of the color transition animation in seconds.
-- **`_color`** (Type: `Color`, Serialized): The target color to transition to.
+- **`_duration`** (Type: `float`, Serialised): The duration of the color transition animation in seconds.
+- **`_color`** (Type: `Color`, Serialised): The target color to transition to.
 
 ### Internal Fields
 
@@ -201,7 +201,7 @@ The `GlowEffect` script is a MonoBehaviour that implements the `IEffect` interfa
 
 ### Fields
 
-- **`_intensity`** (Type: `float`, Serialized): The intensity of the glow effect.
+- **`_intensity`** (Type: `float`, Serialised): The intensity of the glow effect.
 
 ### Internal Fields
 
@@ -266,7 +266,7 @@ The `TransparencyEffect` script is a MonoBehaviour that implements the `IEffect`
 
 ### Fields
 
-- **`_transparency`** (Type: `int`, Serialized): The transparency value, ranging from 0 to 255, where 0 is completely transparent and 255 is fully opaque.
+- **`_transparency`** (Type: `int`, Serialised): The transparency value, ranging from 0 to 255, where 0 is completely transparent and 255 is fully opaque.
 
 ### Internal Fields
 
@@ -336,8 +336,8 @@ The `ScalePunchEffect` script is a MonoBehaviour that implements the `IEffect` i
 
 ### Fields
 
-- **`_punch`** (Type: `float`, Serialized): The magnitude of the punch effect, ranging from 0.0 to 1.0.
-- **`_duration`** (Type: `float`, Serialized): The duration of the punch animation in seconds.
+- **`_punch`** (Type: `float`, Serialised): The magnitude of the punch effect, ranging from 0.0 to 1.0.
+- **`_duration`** (Type: `float`, Serialised): The duration of the punch animation in seconds.
 
 ### Internal Fields
 
@@ -391,8 +391,8 @@ The `RotationPunchEffect` script is a MonoBehaviour that implements the `IEffect
 
 ### Fields
 
-- **`_punch`** (Type: `Vector3`, Serialized): The amount of rotation to apply for the punch effect, specified as a Vector3.
-- **`_duration`** (Type: `float`, Serialized): The duration of the punch animation in seconds.
+- **`_punch`** (Type: `Vector3`, Serialised): The amount of rotation to apply for the punch effect, specified as a Vector3.
+- **`_duration`** (Type: `float`, Serialised): The duration of the punch animation in seconds.
 
 ### Internal Fields
 
@@ -442,8 +442,8 @@ The `PositionPunchEffect` script is a MonoBehaviour that implements the `IEffect
 
 ### Fields
 
-- **`_punch`** (Type: `Vector3`, Serialized): The amount of position change to apply for the punch effect, specified as a Vector3.
-- **`_duration`** (Type: `float`, Serialized): The duration of the punch animation in seconds.
+- **`_punch`** (Type: `Vector3`, Serialised): The amount of position change to apply for the punch effect, specified as a Vector3.
+- **`_duration`** (Type: `float`, Serialised): The duration of the punch animation in seconds.
 
 ### Internal Fields
 
@@ -495,11 +495,11 @@ The `WireframeEffect` script is a MonoBehaviour that implements the `IEffect` in
 
 ### Fields
 
-- **`wireframeType`** (Type: `WireframeType`, Serialized): Specifies the type of wireframe effect to apply. Options include TransparentWireframe, TransparentCulledWireframe, and SolidWireframe.
-- **`_wireColor`** (Type: `Color`, Serialized): The color of the wireframe.
-- **`_baseColor`** (Type: `Color`, Serialized): The base color of the material.
-- **`_wireThickness`** (Type: `float`, Serialized, Range: 0 to 800): The thickness of the wireframe lines.
-- **`_wireSmoothness`** (Type: `float`, Serialized, Range: 0 to 20): The smoothness of the wireframe lines.
+- **`wireframeType`** (Type: `WireframeType`, Serialised): Specifies the type of wireframe effect to apply. Options include TransparentWireframe, TransparentCulledWireframe, and SolidWireframe.
+- **`_wireColor`** (Type: `Color`, Serialised): The color of the wireframe.
+- **`_baseColor`** (Type: `Color`, Serialised): The base color of the material.
+- **`_wireThickness`** (Type: `float`, Serialised, Range: 0 to 800): The thickness of the wireframe lines.
+- **`_wireSmoothness`** (Type: `float`, Serialised, Range: 0 to 20): The smoothness of the wireframe lines.
 
 ### Internal Fields
 
@@ -571,8 +571,8 @@ The `ColorFlickerEffect` script is a MonoBehaviour that implements the `IEffect`
 
 ### Fields
 
-- **`_duration`** (Type: `float`, Serialized): The duration of each flicker cycle in seconds.
-- **`_flickerColor`** (Type: `Color`, Serialized): The color to flicker to.
+- **`_duration`** (Type: `float`, Serialised): The duration of each flicker cycle in seconds.
+- **`_flickerColor`** (Type: `Color`, Serialised): The color to flicker to.
 
 ### Internal Fields
 
@@ -645,11 +645,11 @@ The `OutlineFlickerEffect` script is a MonoBehaviour that implements the `IEffec
 
 ### Fields
 
-- **`_outlineMode`** (Type: `Outline.Mode`, Serialized): The mode of the outline (e.g., OutlineVisible).
-- **`_outlineColor`** (Type: `Color`, Serialized): The color of the outline.
-- **`_flickerColor`** (Type: `Color`, Serialized): The color to flicker to.
-- **`_outlineWidth`** (Type: `float`, Serialized): The width of the outline.
-- **`_duration`** (Type: `float`, Serialized): The duration of each flicker cycle in seconds.
+- **`_outlineMode`** (Type: `Outline.Mode`, Serialised): The mode of the outline (e.g., OutlineVisible).
+- **`_outlineColor`** (Type: `Color`, Serialised): The color of the outline.
+- **`_flickerColor`** (Type: `Color`, Serialised): The color to flicker to.
+- **`_outlineWidth`** (Type: `float`, Serialised): The width of the outline.
+- **`_duration`** (Type: `float`, Serialised): The duration of each flicker cycle in seconds.
 
 ### Internal Fields
 
@@ -725,7 +725,7 @@ The `ShadowSwitchEffect` script is a MonoBehaviour that implements the `IEffect`
 
 ### Fields
 
-- **`_shadowMode`** (Type: `ShadowCastingMode`, Serialized): The shadow casting mode to switch to.
+- **`_shadowMode`** (Type: `ShadowCastingMode`, Serialised): The shadow casting mode to switch to.
 
 ### Internal Fields
 
@@ -779,12 +779,12 @@ void OnDestroy()
 
 ### Description
 
-The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for displaying a text label associated with a GameObject. The label can be customized through the serialized fields.
+The `TextLabelEffect` script is a MonoBehaviour that implements the `IEffect` interface. It provides functionality for displaying a text label associated with a GameObject. The label can be customised through the serialized fields.
 
 ### Fields
 
-- **`_text`** (Type: `TMP_Text`, Serialized): The TextMeshPro (TMP) text component used to display the label.
-- **`_labelText`** (Type: `string`, Serialized): The text content of the label.
+- **`_text`** (Type: `TMP_Text`, Serialised): The TextMeshPro (TMP) text component used to display the label.
+- **`_labelText`** (Type: `string`, Serialised): The text content of the label.
 
 ### Internal Fields
 
@@ -846,7 +846,7 @@ The `AudioPlaybackEffect` script is a MonoBehaviour that implements the `IEffect
 
 ### Fields
 
-- **`_clip`** (Type: `AudioClip`, Serialized): The audio clip to be played.
+- **`_clip`** (Type: `AudioClip`, Serialised): The audio clip to be played.
 
 ### Internal Fields
 
@@ -955,9 +955,9 @@ The `CameraZoomEffect` script is a MonoBehaviour that provides functionality for
 
 ### Fields
 
-- **`_postProcessVolume`** (Type: `Volume`, Serialized): The Post-Processing Volume component that contains the lens distortion effect.
-- **`_intensity`** (Type: `float`, Range: [-1.0f, 1.0f], Serialized): The intensity of the lens distortion effect.
-- **`_duration`** (Type: `float`, Serialized): The duration over which the intensity of the lens distortion effect is changed.
+- **`_postProcessVolume`** (Type: `Volume`, Serialised): The Post-Processing Volume component that contains the lens distortion effect.
+- **`_intensity`** (Type: `float`, Range: [-1.0f, 1.0f], Serialised): The intensity of the lens distortion effect.
+- **`_duration`** (Type: `float`, Serialised): The duration over which the intensity of the lens distortion effect is changed.
 
 ### Internal Fields
 

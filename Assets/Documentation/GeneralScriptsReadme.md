@@ -13,7 +13,7 @@ The `BaseInteraction` script is an abstract MonoBehaviour class that serves as a
 ### Fields
 
 - **`handpickEffects`** (Type: `bool`): Determines whether effects are selected manually or obtained from components.
-- **`_handpickedEffects`** (Type: `MonoBehaviour[]`, Serialized): An array of MonoBehaviour components representing handpicked effects. These effects will only take effect if `handpickEffects` is set to `true`.
+- **`_handpickedEffects`** (Type: `MonoBehaviour[]`, Serialised): An array of MonoBehaviour components representing handpicked effects. These effects will only take effect if `handpickEffects` is set to `true`.
 
 ### Internal Fields
 
@@ -224,27 +224,27 @@ The `CameraMove` script is a MonoBehaviour class responsible for controlling the
 
 ### Fields
 
-- **`xSpeed`** (Type: `float`, Serialized, Default: `120.0f`)
+- **`xSpeed`** (Type: `float`, Serialised, Default: `120.0f`)
 
   - Description: The speed at which the camera rotates around the Y-axis.
 
-- **`ySpeed`** (Type: `float`, Serialized, Default: `120.0f`)
+- **`ySpeed`** (Type: `float`, Serialised, Default: `120.0f`)
 
   - Description: The speed at which the camera rotates around the X-axis.
 
-- **`maxSpeed`** (Type: `float`, Serialized, Default: `100f`)
+- **`maxSpeed`** (Type: `float`, Serialised, Default: `100f`)
 
   - Description: The maximum speed at which the camera can move.
 
-- **`accelerationRate`** (Type: `float`, Serialized, Default: `10f`)
+- **`accelerationRate`** (Type: `float`, Serialised, Default: `10f`)
 
   - Description: The rate at which the camera accelerates when moving.
 
-- **`decelerationRate`** (Type: `float`, Serialized, Default: `10f`)
+- **`decelerationRate`** (Type: `float`, Serialised, Default: `10f`)
 
   - Description: The rate at which the camera decelerates when stopping.
 
-- **`targetSpeed`** (Type: `float`, Serialized, Default: `5f`)
+- **`targetSpeed`** (Type: `float`, Serialised, Default: `5f`)
 
   - Description: The target speed for the camera movement.
 
@@ -296,11 +296,11 @@ The `CameraZoom` script is a MonoBehaviour class responsible for controlling the
 
 ### Fields
 
-- **`_movementTime`** (Type: `float`, Serialized, Default: `1.0f`)
+- **`_movementTime`** (Type: `float`, Serialised, Default: `1.0f`)
 
   - Description: The duration, in seconds, it takes for the camera to reach the new zoom position.
 
-- **`_speed`** (Type: `float`, Serialized, Default: `5.0f`)
+- **`_speed`** (Type: `float`, Serialised, Default: `5.0f`)
   - Description: The speed at which the camera zooms in and out.
 
 ### Internal Fields
@@ -480,10 +480,10 @@ The `Billboard` script is a MonoBehaviour that enables a GameObject to face the 
 
 ### Fields
 
-- **`_billboardType`** (Type: `BillboardType`, Serialized): Specifies the type of billboard behavior. Options include LookAtCamera and CameraForward.
-- **`_lockX`** (Type: `bool`, Serialized): Locks rotation around the X-axis.
-- **`_lockY`** (Type: `bool`, Serialized): Locks rotation around the Y-axis.
-- **`_lockZ`** (Type: `bool`, Serialized): Locks rotation around the Z-axis.
+- **`_billboardType`** (Type: `BillboardType`, Serialised): Specifies the type of billboard behavior. Options include LookAtCamera and CameraForward.
+- **`_lockX`** (Type: `bool`, Serialised): Locks rotation around the X-axis.
+- **`_lockY`** (Type: `bool`, Serialised): Locks rotation around the Y-axis.
+- **`_lockZ`** (Type: `bool`, Serialised): Locks rotation around the Z-axis.
 
 ### Internal Fields
 
@@ -494,7 +494,7 @@ The `Billboard` script is a MonoBehaviour that enables a GameObject to face the 
 
 - **`Awake()`**
 
-  - Description: This method is called when the script instance is being loaded. It initializes references to the Camera and stores the initial rotation of the GameObject.
+  - Description: This method is called when the script instance is being loaded. It initialises references to the Camera and stores the initial rotation of the GameObject.
   - Behavior:
     - Gets the main Camera in the scene.
     - Stores the initial rotation of the GameObject.
@@ -507,4 +507,4 @@ The `Billboard` script is a MonoBehaviour that enables a GameObject to face the 
 
 ### Usage
 
-Attach this script to a GameObject in the scene. Customize the billboard behavior and rotation locking using the serialized fields. When the scene is played, the GameObject will behave according to the specified options.
+Attach this script to a GameObject in the scene. Customise the billboard behavior and rotation locking using the serialised fields. When the scene is played, the GameObject will behave according to the specified options.
